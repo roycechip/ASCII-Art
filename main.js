@@ -14,7 +14,6 @@ img.addEventListener('load', (e) => {
     let scale = Math.min(widthScale, heightScale);
     if(img.width <= maxWidth && img.height <= maxHeight){
         scale = 1;
-        console.log('smol');
     }
     canvas.width = img.width*scale;
     canvas.height = img.height*scale;
