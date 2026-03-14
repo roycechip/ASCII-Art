@@ -28,6 +28,11 @@ body {
     background-color: #B7DB70;
 }
 
+.upload:active {
+    transform: scale(0.99);
+    transition: transform 10ms;
+}
+
 .canvas {
     outline: solid 2px black;
 }
