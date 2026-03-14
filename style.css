@@ -1,0 +1,29 @@
+body {
+    font-family:'Courier New', Courier, monospace;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+}
+
+.upload {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 24px;
+
+    color: white;
+    background-color: mediumpurple;
+
+    border: none;
+    padding: 24px;
+    border-radius: 100px;
+}
+
+.upload:hover {
+    transform: scale(1.1);
+
+    color: black;
+    background-color: #B7DB70;
+}
