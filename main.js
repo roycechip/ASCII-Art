@@ -5,8 +5,8 @@ const referenceCanvas = document.querySelector('#referenceCanvas');
 const body = document.body;
 const ASCIIArt = document.createElement('h4');
 body.append(ASCIIArt);
-let displayCtx = displayCanvas.getContext('2d');
-let referenceCtx = referenceCanvas.getContext('2d');
+let displayCtx = displayCanvas.getContext('2d', {willReadFrequently: true });
+let referenceCtx = referenceCanvas.getContext('2d', {willReadFrequently: true });
 
 let img = new Image();
 
@@ -14,7 +14,7 @@ img.addEventListener('load', () => {
     //inserting images on displayCanvas and referenceCanvas
     let maxDisplayWidth = 500;
     let maxDisplayHeight = 500;
-    let maxReferenceWidth = Math.floor(window.innerWidth/12);
+    let maxReferenceWidth = Math.floor(window.innerWidth/8);
     let maxReferenceHeight = maxReferenceWidth;
 
     let displayWidthScale = maxDisplayWidth/img.width;
@@ -44,7 +44,6 @@ img.addEventListener('load', () => {
     let referencePixels = referenceData.data;
     let ASCIIResult = '';
     const ASCIIPalette = ['@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', ' '];
-    console.log(referencePixels);
     for(let i=0;i<referenceCanvas.height;i++){
         for(let j=0;j<referenceCanvas.width;j++){
             let index = (i*referenceCanvas.width+j)*4;
