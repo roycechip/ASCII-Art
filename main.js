@@ -2,13 +2,14 @@ const uploadButton = document.querySelector('#uploadButton');
 const fileInput = document.querySelector('#fileInput');
 const displayCanvas = document.querySelector('#displayCanvas');
 const referenceCanvas = document.querySelector('#referenceCanvas')
+const ASCIIArt = document.createElement('h4');
+let displayCtx = displayCanvas.getContext('2d');
+let referenceCtx = referenceCanvas.getContext('2d');
 
 let img = new Image();
 
-img.addEventListener('load', (e) => {
-    let ctx = displayCanvas.getContext('2d');
-    let ctx1 = referenceCanvas.getContext('2d');
-
+img.addEventListener('load', () => {
+    //inserting images on displayCanvas and referenceCanvas
     let maxDisplayWidth = 500;
     let maxDisplayHeight = 500;
     let maxReferenceWidth = 300;
@@ -33,8 +34,13 @@ img.addEventListener('load', (e) => {
 
     referenceCanvas.width = img.width*referenceScale;
     referenceCanvas.height = img.height*referenceScale;
-    ctx.drawImage(img, 0, 0, img.width*displayScale, img.height*displayScale);
-    ctx1.drawImage(img, 0, 0, img.width*referenceScale, img.height*referenceScale);
+    displayCtx.drawImage(img, 0, 0, img.width*displayScale, img.height*displayScale);
+    referenceCtx.drawImage(img, 0, 0, img.width*referenceScale, img.height*referenceScale);
+
+    //converting referenceCanvas into ASCII art
+    let referenceData = referenceCtx.getImageData(0, 0, referenceCanvas.width, referenceCanvas.height);
+    let referencePixels = referenceData.data;
+    console.log(referencePixels);
 })
 
 uploadButton.addEventListener('click', () => fileInput.click());
