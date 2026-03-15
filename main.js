@@ -14,8 +14,8 @@ img.addEventListener('load', () => {
     //inserting images on displayCanvas and referenceCanvas
     let maxDisplayWidth = 500;
     let maxDisplayHeight = 500;
-    let maxReferenceWidth = 300;
-    let maxReferenceHeight = 300;
+    let maxReferenceWidth = Math.floor(window.innerWidth/12);
+    let maxReferenceHeight = maxReferenceWidth;
 
     let displayWidthScale = maxDisplayWidth/img.width;
     let displayHeightScale = maxDisplayHeight/img.height;
@@ -31,11 +31,11 @@ img.addEventListener('load', () => {
         referenceScale = 1;
     }
 
-    displayCanvas.width = img.width*displayScale;
-    displayCanvas.height = img.height*displayScale;
+    displayCanvas.width = Math.floor(img.width*displayScale);
+    displayCanvas.height = Math.floor(img.height*displayScale);
 
-    referenceCanvas.width = img.width*referenceScale;
-    referenceCanvas.height = img.height*referenceScale;
+    referenceCanvas.width = Math.floor(img.width*referenceScale);
+    referenceCanvas.height = Math.floor(img.height*referenceScale);
     displayCtx.drawImage(img, 0, 0, img.width*displayScale, img.height*displayScale);
     referenceCtx.drawImage(img, 0, 0, img.width*referenceScale, img.height*referenceScale);
 
@@ -46,14 +46,14 @@ img.addEventListener('load', () => {
     const ASCIIPalette = ['@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', ' '];
     console.log(referencePixels);
     for(let i=0;i<referenceCanvas.height;i++){
-        for(let j=0;j<=referenceCanvas.width;j++){
+        for(let j=0;j<referenceCanvas.width;j++){
             let index = (i*referenceCanvas.width+j)*4;
             let grayscale = (referencePixels[index]*0.299) + (referencePixels[index+1]*0.587) + (referencePixels[index+2]*0.114);
             ASCIIResult += ASCIIPalette[Math.floor(grayscale/4)];
         }
         ASCIIResult += '\n';
     }
-    ASCIIArt.textContent = ASCIIResult;
+    ASCIIArt.innerText = ASCIIResult;
 })
 
 uploadButton.addEventListener('click', () => fileInput.click());

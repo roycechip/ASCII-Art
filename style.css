@@ -1,4 +1,4 @@
-body {
+.temp {
     font-family:'Courier New', Courier, monospace;
     display: flex;
     flex-direction: column;
@@ -6,6 +6,11 @@ body {
     justify-content: center;
     align-items: center;
     gap: 50px;
+}
+
+body {
+    align-items: center;
+    text-align: center;
 }
 
 .upload {
