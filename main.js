@@ -1,8 +1,10 @@
 const uploadButton = document.querySelector('#uploadButton');
 const fileInput = document.querySelector('#fileInput');
 const displayCanvas = document.querySelector('#displayCanvas');
-const referenceCanvas = document.querySelector('#referenceCanvas')
+const referenceCanvas = document.querySelector('#referenceCanvas');
+const body = document.body;
 const ASCIIArt = document.createElement('h4');
+body.append(ASCIIArt);
 let displayCtx = displayCanvas.getContext('2d');
 let referenceCtx = referenceCanvas.getContext('2d');
 
@@ -40,7 +42,18 @@ img.addEventListener('load', () => {
     //converting referenceCanvas into ASCII art
     let referenceData = referenceCtx.getImageData(0, 0, referenceCanvas.width, referenceCanvas.height);
     let referencePixels = referenceData.data;
+    let ASCIIResult = '';
+    const ASCIIPalette = ['@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', ' '];
     console.log(referencePixels);
+    for(let i=0;i<referenceCanvas.height;i++){
+        for(let j=0;j<=referenceCanvas.width;j++){
+            let index = (i*referenceCanvas.width+j)*4;
+            let grayscale = (referencePixels[index]*0.299) + (referencePixels[index+1]*0.587) + (referencePixels[index+2]*0.114);
+            ASCIIResult += ASCIIPalette[Math.floor(grayscale/25.6)];
+        }
+        ASCIIResult += '\n';
+    }
+    ASCIIArt.textContent = ASCIIResult;
 })
 
 uploadButton.addEventListener('click', () => fileInput.click());
