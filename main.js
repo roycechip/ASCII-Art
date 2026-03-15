@@ -49,7 +49,7 @@ img.addEventListener('load', () => {
         for(let j=0;j<=referenceCanvas.width;j++){
             let index = (i*referenceCanvas.width+j)*4;
             let grayscale = (referencePixels[index]*0.299) + (referencePixels[index+1]*0.587) + (referencePixels[index+2]*0.114);
-            ASCIIResult += ASCIIPalette[Math.floor(grayscale/25.6)];
+            ASCIIResult += ASCIIPalette[Math.floor(grayscale/4)];
         }
         ASCIIResult += '\n';
     }
