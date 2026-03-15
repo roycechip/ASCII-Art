@@ -1,13 +1,13 @@
 const uploadButton = document.querySelector('#uploadButton');
 const fileInput = document.querySelector('#fileInput');
-const canvas = document.querySelector('#canvas');
-const canvas1 = document.querySelector('#canvas1')
+const displayCanvas = document.querySelector('#displayCanvas');
+const referenceCanvas = document.querySelector('#referenceCanvas')
 
 let img = new Image();
 
 img.addEventListener('load', (e) => {
-    let ctx = canvas.getContext('2d');
-    let ctx1 = canvas1.getContext('2d');
+    let ctx = displayCanvas.getContext('2d');
+    let ctx1 = referenceCanvas.getContext('2d');
 
     let maxDisplayWidth = 500;
     let maxDisplayHeight = 500;
@@ -28,11 +28,11 @@ img.addEventListener('load', (e) => {
         referenceScale = 1;
     }
 
-    canvas.width = img.width*displayScale;
-    canvas.height = img.height*displayScale;
+    displayCanvas.width = img.width*displayScale;
+    displayCanvas.height = img.height*displayScale;
 
-    canvas1.width = img.width*referenceScale;
-    canvas1.height = img.height*referenceScale;
+    referenceCanvas.width = img.width*referenceScale;
+    referenceCanvas.height = img.height*referenceScale;
     ctx.drawImage(img, 0, 0, img.width*displayScale, img.height*displayScale);
     ctx1.drawImage(img, 0, 0, img.width*referenceScale, img.height*referenceScale);
 })
