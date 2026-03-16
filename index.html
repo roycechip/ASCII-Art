@@ -7,12 +7,14 @@
     <script src="main.js" defer></script>
     <title>Document</title>
 </head>
-<body style="margin: 0; font-family: 'consolas', monospace; line-height: 85%; letter-spacing: 2px; font-size: 10px;">
+<body style="margin: 0; font-family: 'consolas', monospace; line-height: 85%; letter-spacing: 0px; font-size: 10px;">
     <div class="temp">
         <input type="file" id="fileInput" accept="image/*" style="display: none;">
         <button class="upload" id="uploadButton">Upload Image</button>
         <canvas class="canvas" id="displayCanvas" width="300" height="300"></canvas>
-        <canvas class="canvas" id="referenceCanvas" width="300" height="300" style="display: none"></canvas>
+        <canvas class="canvas" id="referenceCanvas" width="300" height="300" style="display: none;"></canvas>
+        <h1 style="font-size: 100px; margin: 0; margin-bottom: 60px;">↓</h1>
+        <button class="copy" id="copy">Copy (not very useful tho lol)</button>
     </div>
 </body>
 </html>

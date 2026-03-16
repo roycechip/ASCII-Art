@@ -2,8 +2,9 @@ const uploadButton = document.querySelector('#uploadButton');
 const fileInput = document.querySelector('#fileInput');
 const displayCanvas = document.querySelector('#displayCanvas');
 const referenceCanvas = document.querySelector('#referenceCanvas');
+const copy = document.querySelector('#copy');
 const body = document.body;
-const ASCIIArt = document.createElement('h4');
+const ASCIIArt = document.createElement('pre');
 body.append(ASCIIArt);
 let displayCtx = displayCanvas.getContext('2d', {willReadFrequently: true });
 let referenceCtx = referenceCanvas.getContext('2d', {willReadFrequently: true });
@@ -14,31 +15,28 @@ img.addEventListener('load', () => {
     //inserting images on displayCanvas and referenceCanvas
     let maxDisplayWidth = 500;
     let maxDisplayHeight = 500;
-    let maxReferenceWidth = Math.floor(window.innerWidth/8);
-    let maxReferenceHeight = maxReferenceWidth;
+    let maxReferenceWidth = 300;
+    let maxReferenceHeight = 300;
 
     let displayWidthScale = maxDisplayWidth/img.width;
     let displayHeightScale = maxDisplayHeight/img.height;
     let referenceWidthScale = maxReferenceWidth/img.width;
-    let referenceHeightScale = maxReferenceHeight/img.height;
+    let referenceHeightScale = referenceWidthScale;
 
     let displayScale = Math.min(displayWidthScale, displayHeightScale);
-    let referenceScale = Math.min(referenceWidthScale, referenceHeightScale);
     if(img.width <= maxDisplayWidth && img.height <= maxDisplayHeight){
         displayScale = 1;
-    }
-    if(img.width <= maxReferenceWidth && img.height <= maxReferenceHeight){
-        referenceScale = 1;
     }
 
     displayCanvas.width = Math.floor(img.width*displayScale);
     displayCanvas.height = Math.floor(img.height*displayScale);
 
-    referenceCanvas.width = Math.floor(img.width*referenceScale);
-    referenceCanvas.height = Math.floor(img.height*referenceScale);
+    referenceCanvas.width = maxReferenceWidth;
+    referenceCanvas.height = Math.floor(img.height*referenceHeightScale);
     displayCtx.drawImage(img, 0, 0, img.width*displayScale, img.height*displayScale);
-    referenceCtx.drawImage(img, 0, 0, img.width*referenceScale, img.height*referenceScale);
+    referenceCtx.drawImage(img, 0, 0, maxReferenceWidth, Math.floor(img.height*referenceHeightScale));
 
+    
     //converting referenceCanvas into ASCII art
     let referenceData = referenceCtx.getImageData(0, 0, referenceCanvas.width, referenceCanvas.height);
     let referencePixels = referenceData.data;
@@ -53,6 +51,10 @@ img.addEventListener('load', () => {
         ASCIIResult += '\n';
     }
     ASCIIArt.innerText = ASCIIResult;
+    ASCIIArt.style.fontSize = `${window.innerWidth/(maxReferenceWidth*0.6)}px`;
+    let tempScale = 10/ASCIIArt.style.fontSize.split('').slice(0, -2).join('');
+    ASCIIArt.style.lineHeight = `${60*tempScale}%`
+    ASCIIArt.style.outline = '2px solid black';
 })
 
 uploadButton.addEventListener('click', () => fileInput.click());
@@ -69,3 +71,7 @@ fileInput.addEventListener('change', () => {
     reader.addEventListener('load', (e) => img.src = e.target.result);
     reader.readAsDataURL(fileInput.files[0]);
 });
+
+copy.addEventListener('click', () => {
+    navigator.clipboard.writeText(ASCIIArt.textContent);
+})
