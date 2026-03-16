@@ -13,6 +13,11 @@ body {
     text-align: left;
 }
 
+h4 {
+    width: fit-content;
+    outline: solid 2px black;
+}
+
 .upload {
     font-family: inherit;
     font-weight: 700;
@@ -27,10 +32,8 @@ body {
 }
 
 .upload:hover {
-    transform: scale(1.1);
-
     color: black;
-    background-color: #B7DB70;
+    background-color: rgba(147, 112, 216, 0.482);
 }
 
 .upload:active {
