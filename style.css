@@ -45,3 +45,24 @@ h4 {
 .canvas {
     outline: solid 2px black;
 }
+
+.header {
+    max-height: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 0;
+    border-bottom: double 2px black;
+    margin-bottom: 50px;
+}
+
+.logo {
+    max-height: 100px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 24px;
+    margin-left: 16px;
+    color: black;
+}
