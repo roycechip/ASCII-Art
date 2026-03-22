@@ -1,3 +1,5 @@
+
+
 const uploadButton = document.querySelector('#uploadButton');
 const fileInput = document.querySelector('#fileInput');
 const displayCanvas = document.querySelector('#displayCanvas');
@@ -5,6 +7,8 @@ const referenceCanvas = document.querySelector('#referenceCanvas');
 const copy = document.querySelector('#copy');
 const body = document.body;
 const ASCIIArt = document.createElement('pre');
+const getgif = document.querySelector('#getgif');
+
 body.append(ASCIIArt);
 let displayCtx = displayCanvas.getContext('2d', {willReadFrequently: true });
 let referenceCtx = referenceCanvas.getContext('2d', {willReadFrequently: true });
@@ -74,4 +78,13 @@ fileInput.addEventListener('change', () => {
 
 copy.addEventListener('click', () => {
     navigator.clipboard.writeText(ASCIIArt.textContent);
+})
+
+getgif.addEventListener('click', () => {
+    console.log('hi');
+    //get individual frames of gif
+    //store them in an array
+    //convert such indices images into ASCII
+    //put them in an array
+    //flip through the array so it looks animated
 })

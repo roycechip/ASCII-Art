@@ -77,3 +77,12 @@ a {
     margin-left: 16px;
     color: black;
 }
+
+.gifworkspace {
+    display: flex;
+    margin-top: 500px;
+    align-items: center;
+    flex-grow: 0;
+    max-width: 500px;
+    flex-direction: column;
+}
