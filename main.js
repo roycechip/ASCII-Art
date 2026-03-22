@@ -79,12 +79,3 @@ fileInput.addEventListener('change', () => {
 copy.addEventListener('click', () => {
     navigator.clipboard.writeText(ASCIIArt.textContent);
 })
-
-getgif.addEventListener('click', () => {
-    console.log('hi');
-    //get individual frames of gif
-    //store them in an array
-    //convert such indices images into ASCII
-    //put them in an array
-    //flip through the array so it looks animated
-})
